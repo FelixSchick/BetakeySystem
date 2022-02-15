@@ -1,0 +1,5 @@
+name: BetakeySystem
+version: '${project.version}'
+main: de.illegalaccess.betakeysystem.BetakeySystem
+description:
+  Credits: IllegalAccess
