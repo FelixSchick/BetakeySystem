@@ -20,7 +20,7 @@ import java.util.UUID;
 
 public final class BetakeySystem extends Plugin {
     //Trigger warning: STATIC ABUSE
-    private static MySQL mySQL;
+    private MySQL mySQL;
     private static BetakeyManager betakeyManager;
 
     public static Configuration config;
@@ -38,6 +38,7 @@ public final class BetakeySystem extends Plugin {
         // Plugin startup logic
         createFiles();
         mySQL = new MySQL();
+        mySQL.connect();
         mySQL.createTabels();
 
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new CreateKeyCommand());
@@ -50,10 +51,7 @@ public final class BetakeySystem extends Plugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-    }
-
-    public static MySQL getMySQL() {
-        return mySQL;
+        mySQL.disconnect();
     }
 
     private void createFiles() {

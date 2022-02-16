@@ -11,7 +11,7 @@ import java.util.Random;
 public class KeyManager {
     private static MySQL mySQL;
     public KeyManager() {
-        mySQL = BetakeySystem.getMySQL();
+        mySQL = new MySQL();
     }
 
     public String create(){
@@ -35,7 +35,7 @@ public class KeyManager {
 
     public boolean isExist(String key){
         try {
-            PreparedStatement preparedStatement = MySQL.getCon().prepareStatement("SELECT * FROM `keys` WHERE `key` =?");
+            PreparedStatement preparedStatement = mySQL.getConnection().prepareStatement("SELECT * FROM `keys` WHERE `key` =?");
             preparedStatement.setString(1, key);
             preparedStatement.executeQuery();
             if(preparedStatement.getResultSet().next()) {

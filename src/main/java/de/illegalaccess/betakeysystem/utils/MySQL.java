@@ -13,6 +13,8 @@ public class MySQL {
       Datenbank 2: structure: Keys + UUID
      */
 
+    private static MySQL mySQL;
+
     private static Connection connection;
     private String host = BetakeySystem.config.getString("MySQL.host");
     private String port = BetakeySystem.config.getString("MySQL.port");
@@ -20,15 +22,11 @@ public class MySQL {
     private String username = BetakeySystem.config.getString("MySQL.username");
     private String password = BetakeySystem.config.getString("MySQL.password");
 
-    public static Connection getCon(){
-        return connection;
-    }
 
     public MySQL() {
-        connect();
     }
 
-    private void connect() {
+    public void connect() {
         try{
             connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database , username, password);
             System.out.println("§7[§bMySQL§7] §aDie verbindung zur MySQL-Datenbank wurde hergestellt.");
@@ -74,5 +72,9 @@ public class MySQL {
     public void createTabels() {
         update("CREATE TABLE IF NOT EXISTS `keys` ( `key` VARCHAR(16))");
         update("CREATE TABLE IF NOT EXISTS `betakeys` ( `key` VARCHAR(16), `uuid` VARCHAR(36))");
+    }
+
+    public Connection getConnection() {
+        return connection;
     }
 }
