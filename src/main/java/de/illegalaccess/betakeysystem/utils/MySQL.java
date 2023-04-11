@@ -16,11 +16,11 @@ public class MySQL {
     private static MySQL mySQL;
 
     private static Connection connection;
-    private String host = BetakeySystem.config.getString("MySQL.host");
-    private String port = BetakeySystem.config.getString("MySQL.port");
-    private String database = BetakeySystem.config.getString("MySQL.database");
-    private String username = BetakeySystem.config.getString("MySQL.username");
-    private String password = BetakeySystem.config.getString("MySQL.password");
+    private String host = BetakeySystem.getInstance().getConfig().getString("MySQL.host");
+    private String port = BetakeySystem.getInstance().getConfig().getString("MySQL.port");
+    private String database = BetakeySystem.getInstance().getConfig().getString("MySQL.database");
+    private String username = BetakeySystem.getInstance().getConfig().getString("MySQL.username");
+    private String password = BetakeySystem.getInstance().getConfig().getString("MySQL.password");
 
 
     public MySQL() {

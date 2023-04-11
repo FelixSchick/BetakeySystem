@@ -29,10 +29,12 @@ public class PlayerLoginListener implements Listener {
                 String key = betakeyManager.getKey(event.getPlayer().getUniqueId());
                 if (!keyManager.isExist(key)){
                     player.disconnect("§7▛▀▀▀▀▀▀▀▀▀▀▀▀▀▀▜\n§4Your key is not valid.\n§7▙▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▟");
+                } else {
+
                 }
             } else {
-                if (ProxyServer.getInstance().getServerInfo(BetakeySystem.config.getString("checkBetaKeyServer")) != null) {
-                    player.connect(ProxyServer.getInstance().getServerInfo(BetakeySystem.config.getString("checkBetaKeyServer")));
+                if (ProxyServer.getInstance().getServerInfo(BetakeySystem.getInstance().getConfig().getString("checkBetaKeyServer")) != null) {
+                    player.connect(ProxyServer.getInstance().getServerInfo(BetakeySystem.getInstance().getConfig().getString("checkBetaKeyServer")));
                 } else {
                     player.disconnect("§7▛▀▀▀▀▀▀▀▀▀▀▀▀▀▀▜\n§4An unknown error has occurred\n please contact an admin.\n§7▙▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▖▟");
                 }

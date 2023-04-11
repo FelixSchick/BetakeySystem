@@ -6,6 +6,8 @@ import de.illegalaccess.betakeysystem.commands.DeleteKeyCommand;
 import de.illegalaccess.betakeysystem.listener.PlayerLoginListener;
 import de.illegalaccess.betakeysystem.utils.BetakeyManager;
 import de.illegalaccess.betakeysystem.utils.MySQL;
+import lombok.Getter;
+import lombok.SneakyThrows;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
@@ -16,14 +18,17 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
-import java.util.UUID;
 
 public final class BetakeySystem extends Plugin {
-    //Trigger warning: STATIC ABUSE
     private MySQL mySQL;
     private static BetakeyManager betakeyManager;
 
-    public static Configuration config;
+    @Getter
+    private static BetakeySystem instance;
+
+    @Getter
+    private Configuration config;
+
     {
         try {
             config = ConfigurationProvider.getProvider(YamlConfiguration.class).load(new File(getDataFolder(), "config.yml"));
@@ -33,18 +38,23 @@ public final class BetakeySystem extends Plugin {
     }
 
 
+    @SneakyThrows
     @Override
     public void onEnable() {
         // Plugin startup logic
+        instance = this;
+
         createFiles();
         mySQL = new MySQL();
         mySQL.connect();
         mySQL.createTabels();
 
+
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new CreateKeyCommand());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new DeleteKeyCommand());
         ProxyServer.getInstance().getPluginManager().registerCommand(this, new ActivateCommand());
         ProxyServer.getInstance().getPluginManager().registerListener(this, new PlayerLoginListener());
+
 
     }
 
