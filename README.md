@@ -1,6 +1,6 @@
 # BetakeySystem
 
-This is a plugin to manage Betakeys
+This is a Minecraft Spigot plugin to manage betakeys and their access
 
 ### commands:                                                                                                                                                                 
   /activateKey -> with this command you can ativate a key                                                                                                                 
