@@ -18,7 +18,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
-
+/*
+    Hier könnte ihre Werbung stehen
+*/
 public final class BetakeySystem extends Plugin {
     private MySQL mySQL;
     private static BetakeyManager betakeyManager;
@@ -38,6 +40,7 @@ public final class BetakeySystem extends Plugin {
     }
 
 
+ 
     @SneakyThrows
     @Override
     public void onEnable() {
